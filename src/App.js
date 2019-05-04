@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Form from "./components/form/form";
-import Forcast from "./components/forcast/forcast"
-import Weather from "./components/weather/daily-weather"
+import Forcast from "./components/forcast/forcast";
+import Weather from "./components/weather/daily-weather";
 
 import "./App.css";
 
@@ -25,14 +25,12 @@ class App extends Component {
       `https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=${APIKEY}`
     );
     const data = await api_call.json();
-    console.log(data)
-    this.setState({ 
+    console.log(data);
+    this.setState({
       city: data.city.name,
       country: data.city.country,
       forcast: data.list
-    })
-
-
+    });
   };
 
   render() {
@@ -41,11 +39,8 @@ class App extends Component {
         <Header />
         <div id="content">
           <Form getWeather={this.getWeather} getForcast={this.getForcast} />
-          <Weather 
-            city = {this.state.city}
-            country = {this.state.country}
-          />
-          <Forcast />
+          <Weather city={this.state.city} country={this.state.country} />
+          <Forcast forcast={this.state.forcast} />
         </div>
         <Footer />
       </div>
