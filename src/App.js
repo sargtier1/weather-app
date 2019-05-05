@@ -14,7 +14,8 @@ class App extends Component {
   state = {
     city: undefined,
     country: undefined,
-    forcast: []
+    forcast: [],
+    error: ""
   };
 
   getWeather = async e => {
@@ -22,15 +23,24 @@ class App extends Component {
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
     const api_call = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=${APIKEY}`
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=${APIKEY}&cnt=7`
     );
     const data = await api_call.json();
-    console.log(data);
-    this.setState({
-      city: data.city.name,
-      country: data.city.country,
-      forcast: data.list
-    });
+    console.log(data.list);
+    if (!city || !country) {
+      this.setState({
+        city: undefined,
+        country: undefined,
+        forcast: [],
+        error: "Please check the input of your city and country!"
+      });
+    } else {
+      this.setState({
+        city: data.city.name,
+        country: data.city.country,
+        forcast: data.list
+      });
+    }
   };
 
   render() {
@@ -40,7 +50,11 @@ class App extends Component {
         <div id="content">
           <Form getWeather={this.getWeather} getForcast={this.getForcast} />
           <Weather city={this.state.city} country={this.state.country} />
-          <Forcast forcast={this.state.forcast} />
+          <Forcast
+            city={this.state.city}
+            country={this.state.country}
+            forcast={this.state.forcast}
+          />
         </div>
         <Footer />
       </div>
