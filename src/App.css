@@ -62,7 +62,7 @@ html {
 body {
   background-color: ghostwhite;
   margin: 0 auto;
-  max-width: 945px;
+  max-width: 1025px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
