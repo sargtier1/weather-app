@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Form from "./components/form/form";
-import Forcast from "./components/forcast/forcast";
+import Forecast from "./components/forecast/forecast"
 import Weather from "./components/weather/daily-weather";
 
 import "./App.css";
@@ -14,7 +14,8 @@ class App extends Component {
   state = {
     city: undefined,
     country: undefined,
-    forcast: [],
+    fullList: [],
+    dailyData: [],
     error: ""
   };
 
@@ -23,22 +24,29 @@ class App extends Component {
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
     const api_call = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=${APIKEY}&units=imperial&cnt=7`
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=${APIKEY}&units=imperial`
     );
     const data = await api_call.json();
     if (!city || !country) {
       this.setState({
         city: undefined,
         country: undefined,
-        forcast: [],
+        fullList: [],
+        dailyData: [],
         error: "Please check the input of your city and country!"
       });
     } else {
+      const dailyData = data.list.filter(reading => {   
+      return reading.dt_txt.includes("12:00:00")
+      }
+    )
       this.setState({
         city: data.city.name,
         country: data.city.country,
-        forcast: data.list
-      });
+        fullList: data.list,
+        dailyData: dailyData
+      }, () => console.log(this.state)
+      )
     }
   };
 
@@ -49,10 +57,10 @@ class App extends Component {
         <div id="content">
           <Form getWeather={this.getWeather} getForcast={this.getForcast} />
           <Weather city={this.state.city} country={this.state.country} />
-          <Forcast
+          <Forecast
             city={this.state.city}
             country={this.state.country}
-            forcast={this.state.forcast}
+            forecast={this.state.dailyData}
           />
         </div>
         <Footer />
