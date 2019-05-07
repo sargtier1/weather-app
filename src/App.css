@@ -1,11 +1,13 @@
 /*            Custom Styles for components          */
 /* ================================================= */
 
-.cardStyles {
-  margin-top: 1.3rem;
+/*                   forecast Styles                  */
+#card-container {
+  justify-content: center;
+  display: flex;
 }
 
-/*                   Form Styles                  */
+/*                   Footer Styles                  */
 footer {
   color: #373737;
   margin: 1.3rem;
@@ -17,7 +19,6 @@ footer {
 /*                   Form Styles                  */
 #form-container {
   padding: 1.3em;
-  width: 1000px;
   justify-content: center;
   margin: auto;
 }

@@ -8,7 +8,7 @@ import Weather from "./components/weather/daily-weather";
 
 import "./App.css";
 
-const APIKEY = "372d7ffe73f751c7f500fe4fb4480a7a";
+const APIKEY = "372d7ffe73f751c7f500fe4fb4480a7a"
 
 class App extends Component {
   state = {
@@ -37,14 +37,15 @@ class App extends Component {
       });
     } else {
       const dailyData = data.list.filter(reading => {   
-      return reading.dt_txt.includes("12:00:00")
+      return reading.dt_txt.includes("00:00:00")
       }
     )
       this.setState({
         city: data.city.name,
         country: data.city.country,
         fullList: data.list,
-        dailyData: dailyData
+        dailyData: dailyData,
+        error: ""
       }, () => console.log(this.state)
       )
     }
@@ -57,10 +58,12 @@ class App extends Component {
         <div id="content">
           <Form getWeather={this.getWeather} getForcast={this.getForcast} />
           <Weather city={this.state.city} country={this.state.country} />
+          <br /> 
           <Forecast
             city={this.state.city}
             country={this.state.country}
             forecast={this.state.dailyData}
+            error={this.state.error}
           />
         </div>
         <Footer />
