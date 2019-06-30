@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 
-import Button from '@material-ui/core/Button'
+import styled from 'styled-components'
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -18,23 +18,14 @@ const Form = props => {
   return (
     <div id='form-container'>
       <form onSubmit={props.getWeather}>
-        {/* <label>City</label>
-
-        <input type='text' name='city' placeholder='Somewhere' />
-        <br />
-        <label>Country (Abbr.)</label>
-
-        <input type='text' name='country' placeholder='US, UK, GR' />
-        <br /> */}
-
         <TextField
           id='standard-password-input'
           label='city'
           name='city'
           className={classes.textField}
           type='text'
-       
           margin='normal'
+          style = {{width: "100%"}}
         />
         <br />
         <TextField
@@ -43,17 +34,47 @@ const Form = props => {
           name='country'
           className={classes.textField}
           type='text'
-      
           margin='normal'
+          style = {{width: "100%"}}
         />
         <br />
-        {/* <Button variant='contained' className={classes.button}>
-          Default
-        </Button> */}
-              <button>Get Weather</button>
 
+        <StyledButton>Get Weather</StyledButton>
       </form>
     </div>
   )
 }
+
+const StyledForm = styled.form`
+  width: 100%
+`
+
+const StyledButton = styled.button`
+cursor: pointer;
+display: inline-block;
+min-height: 1em;
+outline: 0;
+border: none;
+vertical-align: baseline;
+background: #e0e1e2 none;
+color: rgba(0, 0, 0, 0.6);
+font-family: Lato, Helvetica Neue, Arial, Helvetica, sans-serif;
+margin: 0 0.25em 0 0;
+padding: 0.78571429em 1.5em;
+text-transform: none;
+text-shadow: none;
+font-weight: 700;
+line-height: 1em;
+font-style: normal;
+text-align: center;
+text-decoration: none;
+border-radius: 0.28571429rem;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+`
+
+
+
 export default Form
