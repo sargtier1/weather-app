@@ -45,10 +45,6 @@ const Form = props => {
   )
 }
 
-const StyledForm = styled.form`
-  width: 100%
-`
-
 const StyledButton = styled.button`
 cursor: pointer;
 display: inline-block;
