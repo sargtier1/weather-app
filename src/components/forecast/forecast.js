@@ -7,7 +7,7 @@ import "semantic-ui-css/semantic.min.css";
 const Forecast = props => {
 
   return (
-    <div>
+    <>
       {props.city && props.country && (
         <div id="card-container">
           {props.forecast.map(day => (
@@ -40,7 +40,7 @@ const Forecast = props => {
             <p>{props.error}</p>
             </div>
       )}
-    </div>
+    </>
   );
 };
 
