@@ -17,6 +17,8 @@ const StyledTitle = styled.h1`
   color: azure;
   background-color: #85c1e9;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+
+
 `
 
 
