@@ -54,6 +54,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <h1>JT CHANGE HERE</h1>
         <Header />
         <div id="content">
           <Form getWeather={this.getWeather} getForcast={this.getForcast} />
